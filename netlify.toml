@@ -1,5 +1,6 @@
 [build]
-command = "npm install  && npm install --save-dev @types/express && npm install --save-dev @types/cookie-parser && npm install --save-dev @types/morgan && npm install --save-dev @types/jsonfile && npm run build"
+command = "npm install"
+command = "npm run build"
 functions = "functions"
 [functions]
 external_node_modules = ["express"]
