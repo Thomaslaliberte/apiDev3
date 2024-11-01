@@ -47,7 +47,8 @@
     "morgan": "^1.10.0",
     "serverless-http": "^3.2.0",
     "swagger-ui-express": "^5.0.1",
-    "ts-command-line-args": "^2.5.1"
+    "ts-command-line-args": "^2.5.1",
+    "typescript": "^5.6.3"
   },
   "devDependencies": {
     "@jazim/mock-mongoose": "^1.0.1",
@@ -72,6 +73,6 @@
     "supertest": "^7.0.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.3"
   }
 }
