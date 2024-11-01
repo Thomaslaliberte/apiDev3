@@ -1,36 +1,28 @@
 import mongoose, { Schema, model } from 'mongoose';
 
 
-// **** Variables **** //
-
-const INVALID_CONSTRUCTOR_PARAM = 'nameOrObj arg must a string or an object ' + 
-  'with the appropriate user keys.';
-
-
 // **** Types **** //
 
 export interface IUser {
-  _id: string;
-  name: string;
-  email: string;
-  created: Date;
+  _id?: string;
+  nom: string;
+  courriel: string;
+  cree: Date;
   motDePasse: string;
 }
 
-
 // **** Schema **** //
 const UserSchema = new Schema<IUser>({
-  _id: { type: String},
-  name: { 
+  nom: { 
     type: String,
     required: [true, 'Le nom est obligatoire'] },
-  email: {
+  courriel: {
     type: String,
-    required: [true, "Le email est obligatoire"]
+    required: [true, "Le courriel est obligatoire"]
   },
-  created: {
+  cree: {
     type: Date,
-    required: [true, 'Le created est obligatoire'],
+    required: [true, 'Le cree est obligatoire'],
     validate: {
       // Code inspiré de la documentation de Mongoose sur les validateurs personnalisés
       // https://mongoosejs.com/docs/validation.html#custom-validators
@@ -47,11 +39,7 @@ const UserSchema = new Schema<IUser>({
   }
 });
 
-
-
-
-
 // **** Export **** //
 mongoose.pluralize(null);
-export default model<IUser>('users', UserSchema);
 
+export default model<IUser>('users', UserSchema);

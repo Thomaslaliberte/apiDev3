@@ -3,7 +3,6 @@ import UserService from '@src/services/UserService';
 import {IUser} from '@src/models/User';
 
 import { IReq, IRes } from './common/types';
-import check from './common/check';
 
 
 // **** Functions **** //
@@ -16,11 +15,19 @@ async function getAll(_: IReq, res: IRes) {
   return res.status(HttpStatusCodes.OK).json({ users });
 }
 
+async function getOne(req: IReq, res: IRes) {
+  const user = await UserService.getOne(req.params.id as string);
+  return res.status(HttpStatusCodes.OK).json({ user });
+}
+
+async function getOneCourriel(req: IReq, res: IRes) {
+  const user = await UserService.getOneCourriel(req.params.courriel as string);
+  return res.status(HttpStatusCodes.OK).json({ user });
+}
 /**
  * Add one user.
  */
 async function add(req: IReq, res: IRes) {
-  console.log(2)
   let { user } = req.body;
   user = await UserService.addOne(user as IUser);
   return res.status(HttpStatusCodes.CREATED).json({ user });
@@ -41,7 +48,7 @@ async function update(req: IReq, res: IRes) {
 async function delete_(req: IReq, res: IRes) {
   const id = req.params.id;
   await UserService.delete(id as string);
-  return res.status(HttpStatusCodes.OK).end();
+  return res.status(HttpStatusCodes.OK).json({"message":"utilisateur supprime"});
 }
 
 
@@ -49,6 +56,8 @@ async function delete_(req: IReq, res: IRes) {
 
 export default {
   getAll,
+  getOne,
+  getOneCourriel,
   add,
   update,
   delete: delete_,

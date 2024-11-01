@@ -18,10 +18,17 @@ import EnvVars from '@src/common/EnvVars';
 import HttpStatusCodes from '@src/common/HttpStatusCodes';
 import { RouteError } from '@src/common/classes';
 import { NodeEnvs } from '@src/common/misc';
+import authenticateToken from './util/authenticateToken';
 
 
 // **** Variables **** //
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./config/documentation.json');
+const swaggerOptions = {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: "Demo API"
+};
 const app = express();
 
 
@@ -31,6 +38,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(EnvVars.CookieProps.Secret));
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
+
+// Pour authentifier le jeton de l'utilisateur
+app.use(authenticateToken);
 
 // Show routes called in console during development
 if (EnvVars.NodeEnv === NodeEnvs.Dev.valueOf()) {

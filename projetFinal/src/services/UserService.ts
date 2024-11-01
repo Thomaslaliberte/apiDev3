@@ -7,7 +7,7 @@ import { IUser } from '@src/models/User';
 
 // **** Variables **** //
 
-export const USER_NOT_FOUND_ERR = 'User not found';
+export const USER_NOT_FOUND_ERR = 'Utilisateur non trouvee';
 
 
 // **** Functions **** //
@@ -18,12 +18,30 @@ export const USER_NOT_FOUND_ERR = 'User not found';
 function getAll(): Promise<IUser[]> {
   return UserRepo.getAll();
 }
-
+async function getOneCourriel(courriel:string): Promise<IUser | null> {
+  const persists = await UserRepo.getOneCourriel(courriel);
+  if (persists === null) {
+    throw new RouteError(
+      HttpStatusCodes.NOT_FOUND,
+      USER_NOT_FOUND_ERR,
+    );
+  }
+  return UserRepo.getOneCourriel(courriel);
+}
+async function getOne(id:string): Promise<IUser | null> {
+  const persists = await UserRepo.persists(id);
+  if (!persists) {
+    throw new RouteError(
+      HttpStatusCodes.NOT_FOUND,
+      USER_NOT_FOUND_ERR,
+    );
+  }
+  return UserRepo.getOne(id);
+}
 /**
  * Add one user.
  */
 function addOne(user: IUser): Promise<IUser> {
-  console.log(1)
   return UserRepo.add(user);
 }
 
@@ -62,6 +80,8 @@ async function _delete(id: string): Promise<void> {
 
 export default {
   getAll,
+  getOneCourriel,
+  getOne,
   addOne,
   updateOne,
   delete: _delete,

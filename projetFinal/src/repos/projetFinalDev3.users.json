@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "66fda18d92f241b0520d994f"
+  },
+  "nom": "Gordan Freeman4",
+  "courriel": "nova@prospect.com",
+  "cree": {
+    "$date": "2024-03-22T05:42:18.895Z"
+  },
+  "motDePasse": "1234",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fdddaeede0db56c22d5924"
+  },
+  "nom": "Sean Maxwell",
+  "courriel": "smaxwell@example.com",
+  "cree": {
+    "$date": "2024-03-22T05:14:36.252Z"
+  },
+  "motDePasse": "ILoveBanana",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fdddcfede0db56c22d5927"
+  },
+  "nom": "John Smith",
+  "courriel": "john.smith@example.com",
+  "cree": {
+    "$date": "2024-03-22T05:20:55.079Z"
+  },
+  "motDePasse": "bobTheBuilder",
+  "__v": 0
+}]

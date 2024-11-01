@@ -1,0 +1,69 @@
+[{
+  "_id": {
+    "$oid": "66fddd09ede0db56c22d5913"
+  },
+  "nom": "Tarasque",
+  "CA": 25,
+  "armureNaturel": true,
+  "vie": 676,
+  "vitesse": 12,
+  "ajout": {
+    "$date": "2024-03-21T00:00:00.000Z"
+  },
+  "stats": [
+    30,
+    11,
+    30,
+    3,
+    11,
+    11
+  ],
+  "puissance": 30,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fdde1fede0db56c22d592b"
+  },
+  "nom": "Brutatien",
+  "CA": 15,
+  "armureNaturel": false,
+  "vie": 11,
+  "vitesse": 6,
+  "ajout": {
+    "$date": "2024-10-02T04:00:00.000Z"
+  },
+  "stats": [
+    12,
+    12,
+    13,
+    7,
+    10,
+    7
+  ],
+  "puissance": 0.25,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fdde6bede0db56c22d592e"
+  },
+  "nom": "Dragon Rouge Adulte",
+  "CA": 19,
+  "armureNaturel": true,
+  "vie": 256,
+  "vitesse": 12,
+  "ajout": {
+    "$date": "2024-10-02T04:00:00.000Z"
+  },
+  "stats": [
+    27,
+    10,
+    25,
+    16,
+    13,
+    21
+  ],
+  "puissance": 17,
+  "__v": 0
+}]

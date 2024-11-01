@@ -9,19 +9,13 @@ import orm from './MockOrm';
  * Get one user.
  */
 async function getOne(id: string): Promise<IUser | null> {
-  const user = await User.findById(id);
-  if (user === null) {
-    throw new Error('Personne non trouvé');
-  }
-  return user;
+  return await User.findById(id);
+  
+
 }
 
-async function getOneEmail(email: string): Promise<IUser | null> {
-  const user = await User.find({email: email });
-    if (user === null) {
-      throw new Error('user non trouvé');
-    }
-    return user as unknown as IUser;
+async function getOneCourriel(courriel: string): Promise<IUser | null> {
+  return  await User.findOne({courriel: courriel });
 }
 
 /**
@@ -29,7 +23,6 @@ async function getOneEmail(email: string): Promise<IUser | null> {
  */
 async function persists(id: string): Promise<boolean> {
   const user = await User.findById(id);
-  console.log(user)
   if (user != null){
     return true;
   }
@@ -48,7 +41,6 @@ async function getAll(): Promise<IUser[]> {
  * Add one user.
  */
 async function add(user: IUser): Promise<IUser> {
-  console.log(3)
   const nouvelUser = new User(user);
   await nouvelUser.save();
   return nouvelUser;
@@ -60,12 +52,12 @@ async function add(user: IUser): Promise<IUser> {
 async function update(user: IUser): Promise<IUser> {
   const userToUpdate = await User.findById(user._id);
   if (userToUpdate === null) {
-    throw new Error('Personne non trouvé');
+    throw new Error('Utilisateur non trouvee');
   }
 
-  userToUpdate.name = user.name;
-  userToUpdate.email = user.email;
-  userToUpdate.created = user.created;
+  userToUpdate.nom = user.nom;
+  userToUpdate.courriel = user.courriel;
+  userToUpdate.cree = user.cree;
   userToUpdate.motDePasse = user.motDePasse;
   await userToUpdate.save();
 
@@ -84,6 +76,7 @@ async function delete_(id: string): Promise<void> {
 
 export default {
   getOne,
+  getOneCourriel,
   persists,
   getAll,
   add,

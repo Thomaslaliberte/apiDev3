@@ -1,0 +1,598 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Monstres DnD",
+        "summary": "liste de monstre pour Dongeon et Dragon.",
+        "description": "tous les monstres de DnD"
+        
+    },
+    "version": "1.0.0",
+    "servers": [
+        {
+            "url": "",
+            "description": "url"
+        }
+    ],
+    "paths": {
+        "/Users/creer": {
+            "post": {
+                "summary": "Permet de créer un utilisateur",
+                "description": "Retourne l'utilisateur créer",
+                "tags": [
+                    "Utilisateur"
+                ],
+                "requestBody": {
+                    "required": true,
+                    
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "IUser",
+                                "required": [
+                                    "nom",
+                                    "courriel",
+                                    "cree",
+                                    "motDePasse"
+                                ],
+                                "properties": {
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "courriel": {
+                                        "type": "string"
+                                    },
+                                    "cree":{
+                                        "type": "date"
+                                    },
+                                    "motDePasse": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "user":[
+                                    {
+                                        "nom": "Thomas",
+                                        "courriel": "thomas.laliberte@icloud.com",
+                                        "cree": "2024-03-22T05:20:55.079Z",
+                                        "motDePasse": "1234"
+                                    }
+                                ]
+                                
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un message de réussite et l'utilisateur créé"
+                        
+                    },
+                    "400": {
+                        "description": "message informant qu'il manque des informations"
+                    }
+                }
+            }
+        },
+        "/users/": {
+            "get": {
+                "summary": "Permet de recevoir tout les utilisateurs",
+                "description": "Retourne une liste de tous les utilisateurs",
+                "tags": [
+                    "Utilisateur"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message retournant tous les utilisateurs"
+                        
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Permet de modifier un utilisateur",
+                "description": "Retourne l'utilisateur modifier",
+                "tags": [
+                    "Utilisateur"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "IUser",
+                                "required": [
+                                    "_id",
+                                    "nom",
+                                    "courriel",
+                                    "cree",
+                                    "motDePasse"
+                                ],
+                                "properties": {
+                                    "_id": {
+                                        "type": "string"
+                                    },
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "courriel": {
+                                        "type": "string"
+                                    },
+                                    "cree":{
+                                        "type": "date"
+                                    },
+                                    "motDePasse": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "user":{
+                                    "_id":"66fdddaeede0db56c22d5924",
+                                    "nom": "Thomas",
+                                    "courriel": "1234@exemple.com",
+                                    "cree": "2024-03-22T05:20:55.079Z",
+                                    "motDePasse": "1234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Message retournant l'utilisateur modifié"
+                    },
+                    "400": {
+                        "description": "message informant qu'il manque des informations"
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    },
+                    "404": {
+                        "description": "Message informant que l'utilisateur n'a pas été trouvée"
+                    }
+                }
+            }
+        },
+        "/users/id/:id": {
+            "get": {
+                "summary": "Permet de recevoir un utilisateur par son id",
+                "description": "Retourne l'utilisateur désiré",
+                "tags": [
+                    "Utilisateur"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "param",
+                        "description": "L'id de l'utilisateur",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "66fda18d92f241b0520d994f"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message renvoyant l'utilisateur désiré"
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    },
+                    "404": {
+                        "description": "Message informant que l'utilisateur n'a pas été trouvée"
+                    }
+                }
+            }
+        },
+        "/users/courriel/:courriel": {
+            "get": {
+                "summary": "Permet de chercher un utilisateur par son courriel",
+                "description": "Retourne l'utilisateur avec le courriel désiré",
+                "tags": [
+                    "Utilisateur"
+                ],
+                "parameters": [
+                    {
+                        "name": "courriel",
+                        "in": "param",
+                        "description": "Le courriel de l'utilisateur",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1234@exemple.com"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message renvoyant l'utilisateur désiré"
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    },
+                    "404": {
+                        "description": "Message informant que l'utilisateur n'a pas été trouvée"
+                    }
+                }
+            }
+        },
+        "/users/:id": {
+            "delete": {
+                "summary": "Permet de supprimer un utilisateur par son id",
+                "description": "Supprime l'utilisateur désiré",
+                "tags": [
+                    "Utilisateur"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message renvoyant que l'utilisateur désiré à été supprimé"
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    },
+                    "404": {
+                        "description": "Message informant que l'utilisateur n'a pas été trouvée"
+                    }
+                }
+            }
+        },
+        "Jeton":{
+            "post": {
+                "summary": "Permet de créer un jeton pour un utilisateur",
+                "description": "Retourne le jeton",
+                "tags": [
+                    "Jeton"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "IUserLogin",
+                                "required": [
+                                    "nom",
+                                    "courriel",
+                                    "cree",
+                                    "motDePasse"
+                                ],
+                                "properties": {
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "courriel": {
+                                        "type": "string"
+                                    },
+                                    "cree":{
+                                        "type": "date"
+                                    },
+                                    "motDePasse": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "userlogin":{
+                                    "courriel":"1234@exemple.com",
+                                    "motDePasse":"1234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un message retournant le jeton"
+                        
+                    },
+                    "400": {
+                        "description": "message informant qu'il manque des informations"
+                    },
+                    "404": {
+                        "description": "Message informant que l'utilisateur n'a pas été trouvée"
+                    }
+                }
+            }
+        },
+        "Monstre":{
+            "get":{
+                "summary": "Permet de recevoir tout les monstres",
+                "description": "Retourne une liste de tout les monstres",
+                "tags": [
+                    "Monstre"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message retournant tout les monstres"
+                        
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Permet de créer un monstre",
+                "description": "Retourne le monstre créer",
+                "tags": [
+                    "Monstre"
+                ],
+                "requestBody": {
+                    "required": true,
+                    
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "IMonstre",
+                                "required": [
+                                    "nom",
+                                    "CA",
+                                    "armureNaturel",
+                                    "vie",
+                                    "vitesse",
+                                    "ajout",
+                                    "stats",
+                                    "puissance"
+                                ],
+                                "properties": {
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "CA": {
+                                        "type": "integer"
+                                    },
+                                    "armureNaturel":{
+                                        "type": "boolean"
+                                    },
+                                    "vie": {
+                                        "type": "integer"
+                                    },
+                                    "vitesse":{
+                                        "type": "integer"
+                                    },
+                                    "ajout":{
+                                        "type": "date"
+                                    },
+                                    "stats":{
+                                        "type": "array"
+                                    },
+                                    "puissance":{
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "monstre":{
+                                    "nom": "Dragon Rouge Adulte",
+                                    "CA": 19,
+                                    "armureNaturel": true,
+                                    "vie": 256,
+                                    "vitesse": 12,
+                                    "ajout": "2024-10-2",
+                                    "stats":[27,10,25,16,13,21],
+                                    "puissance": 17
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Un message de réussite et l'utilisateur créé"
+                        
+                    },
+                    "400": {
+                        "description": "message informant qu'il manque des informations"
+                    },
+                    "403": {
+                            "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Permet de modifier un monstre",
+                "description": "Retourne le monstre modifier",
+                "tags": [
+                    "Monstre"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "IUser",
+                                "required": [
+                                    "_id",
+                                    "nom",
+                                    "CA",
+                                    "armureNaturel",
+                                    "vie",
+                                    "vitesse",
+                                    "ajout",
+                                    "stats",
+                                    "puissance"
+                                ],
+                                "properties": {
+                                    "_id": {
+                                        "type": "string"
+                                    },
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "CA": {
+                                        "type": "integer"
+                                    },
+                                    "armureNaturel":{
+                                        "type": "boolean"
+                                    },
+                                    "vie": {
+                                        "type": "integer"
+                                    },
+                                    "vitesse":{
+                                        "type": "integer"
+                                    },
+                                    "ajout":{
+                                        "type": "date"
+                                    },
+                                    "stats":{
+                                        "type": "array"
+                                    },
+                                    "puissance":{
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "monstre":{
+                                    "_id": "66fdde6bede0db56c22d592e",
+                                    "nom": "Dragon Rouge Adulte",
+                                    "CA": 19,
+                                    "armureNaturel": true,
+                                    "vie": 256,
+                                    "vitesse": 12,
+                                    "ajout": "2024-10-2",
+                                    "stats":[27,10,25,16,13,21],
+                                    "puissance": 17
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Message retournant le monstre modifié"
+                    },
+                    "400": {
+                        "description": "message informant qu'il manque des informations"
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    },
+                    "404": {
+                        "description": "Message informant que le monstre n'a pas été trouvée"
+                    }
+                }
+            }
+        },
+        "/monstres/id/:id": {
+            "get": {
+                "summary": "Permet de recevoir un monstre par son id",
+                "description": "Retourne le monstre désiré",
+                "tags": [
+                    "Monstre"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "param",
+                        "description": "L'id du monstre",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "66fda18d92f241b0520d994f"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message renvoyant le monstre désiré"
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    },
+                    "404": {
+                        "description": "Message informant que l'e monstre n'a pas été trouvée"
+                    }
+                }
+            }
+        },
+        "/monstres/nom/:nom": {
+            "get": {
+                "summary": "Permet de chercher un monstre par son nom",
+                "description": "Retourne le monstre avec le nom désiré",
+                "tags": [
+                    "Monstre"
+                ],
+                "parameters": [
+                    {
+                        "name": "nom",
+                        "in": "param",
+                        "description": "Le nom du monstre",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Brutatien"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message renvoyant le monstre désiré"
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    },
+                    "404": {
+                        "description": "Message informant que le monstre n'a pas été trouvée"
+                    }
+                }
+            }
+        },
+        "/monstres/puissance/:puissance": {
+            "get": {
+                "summary": "Permet de chercher des monstres par leur puissance",
+                "description": "Retourne les monstres avec la puissance désirée",
+                "tags": [
+                    "Monstre"
+                ],
+                "parameters": [
+                    {
+                        "name": "puissance",
+                        "in": "param",
+                        "description": "La puissance des monstres",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "0.25"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message renvoyant les monstres désirés"
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    },
+                    "404": {
+                        "description": "Message informant qu'aucun monstre n'a pas été trouvée"
+                    }
+                }
+            }
+        },
+        "/monstres/:id": {
+            "delete": {
+                "summary": "Permet de supprimer un monstre par son id",
+                "description": "Supprime le monstre désiré",
+                "tags": [
+                    "Monstre"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message renvoyant que le monstre désiré à été supprimé"
+                    },
+                    "403": {
+                        "description": "Message informant que l'utilisateur de l'api n'a pas de jeton"
+                    },
+                    "404": {
+                        "description": "Message informant que le monstre n'a pas été trouvée"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -19,7 +19,7 @@ export class RouteError extends Error {
  */
 export class ValidationErr extends RouteError {
 
-  public static MSG = 'The follow parameter were missing or invalid "';
+  public static MSG = 'Le parametre suivant est manquant ou invalide "';
 
   public constructor(paramName: string) {
     super(HttpStatusCodes.BAD_REQUEST, ValidationErr.GetMsg(paramName));
