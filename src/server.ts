@@ -24,7 +24,7 @@ import authenticateToken from './util/authenticateToken';
 // **** Variables **** //
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./config/documentation.json');
+const swaggerDocument = require('./documentation.json');
 const swaggerOptions = {
   customCss: '.swagger-ui .topbar { display: none }',
   customSiteTitle: "Demo API"
