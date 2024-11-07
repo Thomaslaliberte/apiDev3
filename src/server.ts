@@ -19,12 +19,12 @@ import HttpStatusCodes from '@src/common/HttpStatusCodes';
 import { RouteError } from '@src/common/classes';
 import { NodeEnvs } from '@src/common/misc';
 import authenticateToken from './util/authenticateToken';
+import swaggerDocument from './config/documentation.json';
 
 
 // **** Variables **** //
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./config/documentation.json');
 const swaggerOptions = {
   customCss: '.swagger-ui .topbar { display: none }',
   customSiteTitle: "Demo API"
