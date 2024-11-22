@@ -50,14 +50,13 @@
                                 }
                             },
                             "example": {
-                                "user":[
-                                    {
-                                        "nom": "Thomas",
-                                        "courriel": "thomas.laliberte@icloud.com",
-                                        "cree": "2024-03-22T05:20:55.079Z",
-                                        "motDePasse": "1234"
-                                    }
-                                ]
+                                "user":
+                                {
+                                     "nom": "Thomas",
+                                     "courriel": "thomas.laliberte@icloud.com",
+                                     "cree": "2024-03-22T05:20:55.079Z",
+                                     "motDePasse": "1234"
+                                }
                                 
                             }
                         }
