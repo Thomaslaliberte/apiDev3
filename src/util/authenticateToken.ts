@@ -12,7 +12,11 @@ import { get } from 'http';
 function authenticateToken(req: Request, res: Response, next: NextFunction) {
   // Ne pas vérifier le token si l'url est celui de generatetoken
   const lastPartOfUrl = req.url.split('/').at(-1);
-  if (lastPartOfUrl === 'jeton' || lastPartOfUrl === 'docs' || lastPartOfUrl === 'creer'|| (lastPartOfUrl ==='monstres' && req.method === 'GET')) {
+  if (
+    lastPartOfUrl === 'Jeton' || lastPartOfUrl === 'jeton' || 
+    lastPartOfUrl === 'docs' || lastPartOfUrl === 'Docs' ||
+    lastPartOfUrl === 'creer'|| lastPartOfUrl === 'Creer'|| 
+    ((lastPartOfUrl ==='monstres' || lastPartOfUrl ==='Monstres')&& req.method === 'GET') ) {
     next();
     return;
   }
