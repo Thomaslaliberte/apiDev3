@@ -30,7 +30,7 @@ const swaggerOptions = {
   customSiteTitle: "Demo API"
 };
 const app = express();
-
+var cors = require('cors')
 
 // **** Setup **** //
 
@@ -39,7 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(EnvVars.CookieProps.Secret));
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
-
+app.use(cors())
 // Pour authentifier le jeton de l'utilisateur
 app.use(authenticateToken);
 
