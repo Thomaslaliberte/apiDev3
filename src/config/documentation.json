@@ -73,7 +73,7 @@
                 }
             }
         },
-        "/users/": {
+        "/Users/": {
             "get": {
                 "summary": "Permet de recevoir tout les utilisateurs",
                 "description": "Retourne une liste de tous les utilisateurs",
@@ -155,7 +155,7 @@
                 }
             }
         },
-        "/users/id/:id": {
+        "/Users/id/:id": {
             "get": {
                 "summary": "Permet de recevoir un utilisateur par son id",
                 "description": "Retourne l'utilisateur désiré",
@@ -187,7 +187,7 @@
                 }
             }
         },
-        "/users/courriel/:courriel": {
+        "/Users/courriel/:courriel": {
             "get": {
                 "summary": "Permet de chercher un utilisateur par son courriel",
                 "description": "Retourne l'utilisateur avec le courriel désiré",
@@ -219,7 +219,7 @@
                 }
             }
         },
-        "/users/:id": {
+        "/Users/:id": {
             "delete": {
                 "summary": "Permet de supprimer un utilisateur par son id",
                 "description": "Supprime l'utilisateur désiré",
@@ -296,7 +296,7 @@
                 }
             }
         },
-        "/Monstre":{
+        "/Monstres":{
             "get":{
                 "summary": "Permet de recevoir tout les monstres",
                 "description": "Retourne une liste de tout les monstres",
@@ -477,7 +477,7 @@
                 }
             }
         },
-        "/monstres/id/:id": {
+        "/Monstres/id/:id": {
             "get": {
                 "summary": "Permet de recevoir un monstre par son id",
                 "description": "Retourne le monstre désiré",
@@ -509,7 +509,7 @@
                 }
             }
         },
-        "/monstres/nom/:nom": {
+        "/Monstres/nom/:nom": {
             "get": {
                 "summary": "Permet de chercher un monstre par son nom",
                 "description": "Retourne le monstre avec le nom désiré",
