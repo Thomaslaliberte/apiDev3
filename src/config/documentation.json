@@ -240,7 +240,7 @@
                 }
             }
         },
-        "Jeton":{
+        "/Jeton":{
             "post": {
                 "summary": "Permet de créer un jeton pour un utilisateur",
                 "description": "Retourne le jeton",
@@ -297,7 +297,7 @@
                 }
             }
         },
-        "Monstre":{
+        "/Monstre":{
             "get":{
                 "summary": "Permet de recevoir tout les monstres",
                 "description": "Retourne une liste de tout les monstres",
