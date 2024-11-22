@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { Response, Request, NextFunction } from 'express';
 import HttpStatusCodes from '@src/common/HttpStatusCodes';
+import { get } from 'http';
 /**
  * Intergiciel pour authentifier le jeton de l'utilisateur
  *
@@ -11,7 +12,7 @@ import HttpStatusCodes from '@src/common/HttpStatusCodes';
 function authenticateToken(req: Request, res: Response, next: NextFunction) {
   // Ne pas vérifier le token si l'url est celui de generatetoken
   const lastPartOfUrl = req.url.split('/').at(-1);
-  if (lastPartOfUrl === 'jeton' || lastPartOfUrl === 'docs' || lastPartOfUrl === 'creer') {
+  if (lastPartOfUrl === 'jeton' || lastPartOfUrl === 'docs' || lastPartOfUrl === 'creer'|| (lastPartOfUrl ==='monstres' && req.method === 'GET')) {
     next();
     return;
   }
