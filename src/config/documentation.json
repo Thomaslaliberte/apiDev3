@@ -541,7 +541,7 @@
                 }
             }
         },
-        "/monstres/puissance/:puissance": {
+        "/Monstres/puissance/:puissance": {
             "get": {
                 "summary": "Permet de chercher des monstres par leur puissance",
                 "description": "Retourne les monstres avec la puissance désirée",
@@ -573,7 +573,7 @@
                 }
             }
         },
-        "/monstres/:id": {
+        "/Monstres/:id": {
             "delete": {
                 "summary": "Permet de supprimer un monstre par son id",
                 "description": "Supprime le monstre désiré",
