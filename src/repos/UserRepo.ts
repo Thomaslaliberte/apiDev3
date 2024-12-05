@@ -6,7 +6,7 @@ import orm from './MockOrm';
 // **** Functions **** //
 
 /**
- * Get one user.
+ * Cherche un utilisateur par son id
  */
 async function getOne(id: string): Promise<IUser | null> {
   return await User.findById(id);
@@ -14,12 +14,15 @@ async function getOne(id: string): Promise<IUser | null> {
 
 }
 
+/**
+ * Cherche un utilisateur par son courriel
+ */
 async function getOneCourriel(courriel: string): Promise<IUser | null> {
   return  await User.findOne({courriel: courriel });
 }
 
 /**
- * See if a user with the given id exists.
+ * Regarde si un utilisateur existe
  */
 async function persists(id: string): Promise<boolean> {
   const user = await User.findById(id);
@@ -30,7 +33,7 @@ async function persists(id: string): Promise<boolean> {
 }
 
 /**
- * Get all users.
+ * Cherche tout les utilisateurs
  */
 async function getAll(): Promise<IUser[]> {
   const user = User.find();
@@ -38,7 +41,7 @@ async function getAll(): Promise<IUser[]> {
 }
 
 /**
- * Add one user.
+ * Ajoute un utilisateur
  */
 async function add(user: IUser): Promise<IUser> {
   const nouvelUser = new User(user);
@@ -47,7 +50,7 @@ async function add(user: IUser): Promise<IUser> {
 }
 
 /**
- * Update a user.
+ * Modifie un utilisateur
  */
 async function update(user: IUser): Promise<IUser> {
   const userToUpdate = await User.findById(user._id);
@@ -65,7 +68,7 @@ async function update(user: IUser): Promise<IUser> {
 }
 
 /**
- * Delete one user.
+ * Supprime un utilisateur
  */
 async function delete_(id: string): Promise<void> {
   await User.findByIdAndDelete(id);

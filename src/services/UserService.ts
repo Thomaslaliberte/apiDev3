@@ -13,11 +13,15 @@ export const USER_NOT_FOUND_ERR = 'Utilisateur non trouvee';
 // **** Functions **** //
 
 /**
- * Get all users.
+ * Cherche tout les utilisateur
  */
 function getAll(): Promise<IUser[]> {
   return UserRepo.getAll();
 }
+
+/**
+ * Cherche un utilisateur par son courriel
+ */
 async function getOneCourriel(courriel:string): Promise<IUser | null> {
   const persists = await UserRepo.getOneCourriel(courriel);
   if (persists === null) {
@@ -28,6 +32,10 @@ async function getOneCourriel(courriel:string): Promise<IUser | null> {
   }
   return UserRepo.getOneCourriel(courriel);
 }
+
+/**
+ * Cherche un utilisateur par son id
+ */
 async function getOne(id:string): Promise<IUser | null> {
   const persists = await UserRepo.persists(id);
   if (!persists) {
@@ -38,15 +46,16 @@ async function getOne(id:string): Promise<IUser | null> {
   }
   return UserRepo.getOne(id);
 }
+
 /**
- * Add one user.
+ * Ajoute un utilisateur
  */
 function addOne(user: IUser): Promise<IUser> {
   return UserRepo.add(user);
 }
 
 /**
- * Update one user.
+ * Modifie un utilisateur
  */
 async function updateOne(user: IUser): Promise<IUser> {
   const persists = await UserRepo.persists(user._id!);
@@ -56,12 +65,11 @@ async function updateOne(user: IUser): Promise<IUser> {
       USER_NOT_FOUND_ERR,
     );
   }
-  // Return user
   return UserRepo.update(user);
 }
 
 /**
- * Delete a user by their id.
+ * Supprime un utilisateur
  */
 async function _delete(id: string): Promise<void> {
   const persists = await UserRepo.persists(id);
@@ -71,7 +79,6 @@ async function _delete(id: string): Promise<void> {
       USER_NOT_FOUND_ERR,
     );
   }
-  // Delete user
   return UserRepo.delete(id);
 }
 

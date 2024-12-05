@@ -7,25 +7,45 @@ import { IReq, IRes } from './common/types';
 
 // **** Functions **** //
 
+
 /**
- * Get all users.
+ * Cherche pour tout les utilisateur
+ *
+ * @param {IReq} req - La requête au serveur
+ * @param {IRes} res - La réponse du serveur
  */
 async function getAll(_: IReq, res: IRes) {
   const users = await UserService.getAll();
   return res.status(HttpStatusCodes.OK).json({ users });
 }
 
+/**
+ * Cherche un monstre par son id
+ *
+ * @param {IReq} req - La requête au serveur
+ * @param {IRes} res - La réponse du serveur
+ */
 async function getOne(req: IReq, res: IRes) {
   const user = await UserService.getOne(req.params.id as string);
   return res.status(HttpStatusCodes.OK).json({ user });
 }
 
+/**
+ * Cherche un utilisateur par son courriel
+ *
+ * @param {IReq} req - La requête au serveur
+ * @param {IRes} res - La réponse du serveur
+ */
 async function getOneCourriel(req: IReq, res: IRes) {
   const user = await UserService.getOneCourriel(req.params.courriel as string);
   return res.status(HttpStatusCodes.OK).json({ user });
 }
+
 /**
- * Add one user.
+ * Ajoute un utilisateur
+ *
+ * @param {IReq} req - La requête au serveur
+ * @param {IRes} res - La réponse du serveur
  */
 async function add(req: IReq, res: IRes) {
   let { user } = req.body;
@@ -34,7 +54,10 @@ async function add(req: IReq, res: IRes) {
 }
 
 /**
- * Update one user.
+ * Modifie un utilisateur
+ *
+ * @param {IReq} req - La requête au serveur
+ * @param {IRes} res - La réponse du serveur
  */
 async function update(req: IReq, res: IRes) {
   let { user } = req.body;
@@ -43,7 +66,10 @@ async function update(req: IReq, res: IRes) {
 }
 
 /**
- * Delete one user.
+ * Supprimer un utilisateur
+ *
+ * @param {IReq} req - La requête au serveur
+ * @param {IRes} res - La réponse du serveur
  */
 async function delete_(req: IReq, res: IRes) {
   const id = req.params.id;

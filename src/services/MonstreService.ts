@@ -13,11 +13,15 @@ export const MONSTRE_NOT_FOUND_ERR = 'Monstre non trouvée';
 // **** Functions **** //
 
 /**
- * Get all users.
+ * Cherche tout les monstres
  */
 function getAll(): Promise<IMonstre[]> {
   return MonstreRepo.getAll();
 }
+
+/**
+ * Cherche un monstre par son nom
+ */
 async function getOneNom(nom:string): Promise<IMonstre | null> {
   let monstre = MonstreRepo.getOneNom(nom);
   if (!(await monstre)) {
@@ -28,6 +32,10 @@ async function getOneNom(nom:string): Promise<IMonstre | null> {
   }
   return monstre
 }
+
+/**
+ * Cherche un monstre par sa puissance
+ */
 async function getOnePuissance(puissance:number): Promise<IMonstre[]> {
   let monstres = MonstreRepo.getOnePuissance(puissance);
   if ((await monstres).length < 1) {
@@ -38,6 +46,10 @@ async function getOnePuissance(puissance:number): Promise<IMonstre[]> {
   }
   return monstres
 }
+
+/**
+ * Cherche un monstre par son id
+ */
 async function getOne(id:string): Promise<IMonstre | null> {
   const persists = await MonstreRepo.persists(id);
   if (!persists) {
@@ -48,15 +60,16 @@ async function getOne(id:string): Promise<IMonstre | null> {
   }
   return MonstreRepo.getOne(id);
 }
+
 /**
- * Add one user.
+ * Ajoute un utilisateur
  */
 function addOne(monstre: IMonstre): Promise<IMonstre> {
   return MonstreRepo.add(monstre);
 }
 
 /**
- * Update one user.
+ * Modifie un utilisateur
  */
 async function updateOne(monstre: IMonstre): Promise<IMonstre> {
 
@@ -67,12 +80,11 @@ async function updateOne(monstre: IMonstre): Promise<IMonstre> {
       MONSTRE_NOT_FOUND_ERR,
     );
   }
-  // Return user
   return MonstreRepo.update(monstre);
 }
 
 /**
- * Delete a user by their id.
+ * Supprime un utilisateur
  */
 async function _delete(id: string): Promise<void> {
   const persists = await MonstreRepo.persists(id);
@@ -82,7 +94,6 @@ async function _delete(id: string): Promise<void> {
       MONSTRE_NOT_FOUND_ERR,
     );
   }
-  // Delete user
   return MonstreRepo.delete(id);
 }
 
